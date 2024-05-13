@@ -21,9 +21,8 @@ jobs:
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.18.0
         env:
-           # CIBW_BUILD: cp39
-           CIBW_BUILD: cp38-* cp39-*
-           CIBW_ARCHS_LINUX: "x86_64"
+           # for now only build specific versions
+           CIBW_BUILD: cp38-manylinux_x86_64 cp39-manylinux_x86_64
         #   CIBW_SOME_OPTION: value
         #    ...
         with:
