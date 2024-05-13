@@ -29,7 +29,7 @@ jobs:
            # for now only build specific versions
            # CIBW_BUILD: cp38-manylinux_x86_64 
            # CIBW_SKIP: cp38-mu*
-           CIBW_BUILD: ${{ if(eq(matrix.os, 'ubuntu-latest'), 'cp38-manylinux_x86_64', 'cp38-win_amd64') }}
+           CIBW_BUILD: cp38-win_amd64 cp38-manylinux_x86_64 
            # CIBW_ARCHS_LINUX: "native"
            # CIBW_ARCHS_WINDOWS: "native"
 
