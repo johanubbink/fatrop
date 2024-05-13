@@ -32,7 +32,7 @@ jobs:
            
            CIBW_ARCHS_LINUX: "native"
            CIBW_ARCHS_WINDOWS: "native"
-           CIBW_PROJECT_REQUIRES_PYTHON: "3.8"
+           CIBW_PROJECT_REQUIRES_PYTHON: "==3.8"
 
         #   CIBW_SOME_OPTION: value
         #    ...
