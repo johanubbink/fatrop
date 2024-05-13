@@ -27,7 +27,7 @@ jobs:
         uses: pypa/cibuildwheel@v2.18.0
         env:
            # for now only build specific versions
-           CIBW_BUILD: cp38-manylinux_x86_64 cp38-win_amd64 
+           CIBW_BUILD: cp38-manylinux_x86_64 
         #   CIBW_SOME_OPTION: value
         #    ...
         with:
@@ -39,3 +39,17 @@ jobs:
         with:
           name: cibw-wheels-${{ matrix.os }}-${{ strategy.job-index }}
           path: ./wheelhouse/*.whl
+
+  install_wheel:
+    needs: build_wheels
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: cibw-wheels-ubuntu-latest-0  # Adjust the name based on the actual artifact name
+          path: wheel  # Specify the directory where you want to download the artifact
+
+      - name: Install the wheel package
+        run: pip install ./wheel/*.whl
