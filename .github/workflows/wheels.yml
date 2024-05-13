@@ -40,24 +40,3 @@ jobs:
           name: cibw-wheels-${{ matrix.os }}-${{ strategy.job-index }}
           path: ./wheelhouse/*.whl
 
-  test_wheel:
-    needs: build_wheels
-    runs-on: ubuntu-latest
-    steps:
-
-      - uses: actions/checkout@v4
-        with:
-          submodules: true 
-        
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.8'
-
-      - name: Download artifact
-        uses: actions/download-artifact@v2
-
-      - name: Print downloaded artifacts
-        run: |
-          ls -l # List all files in the current directory
- 
