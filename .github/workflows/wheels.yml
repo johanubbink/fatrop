@@ -56,13 +56,8 @@ jobs:
 
       - name: Download artifact
         uses: actions/download-artifact@v2
-        with:
-          name: cibw-wheels-ubuntu-latest-0
-          path: ./wheelhouse
 
-      - name: List wheel files
+      - name: Print downloaded artifacts
         run: |
-          ls wheelhouse/*.whl
-
-
+          ls -l # List all files in the current directory
  
