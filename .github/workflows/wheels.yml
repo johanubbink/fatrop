@@ -1,6 +1,10 @@
-name: Build
+name: Build fatropy wheels
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build_wheels:
@@ -10,7 +14,8 @@ jobs:
       matrix:
         # macos-13 is an intel runner, macos-14 is apple silicon
         # os: [ubuntu-latest, windows-latest, macos-13, macos-14]
-        os: [ubuntu-latest, windows-latest]
+        # windows and macos not working yet
+        os: [ubuntu-latest]
         
 
     steps:
