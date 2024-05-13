@@ -40,16 +40,26 @@ jobs:
           name: cibw-wheels-${{ matrix.os }}-${{ strategy.job-index }}
           path: ./wheelhouse/*.whl
 
-  install_wheel:
+  test_wheel:
     needs: build_wheels
     runs-on: ubuntu-latest
     steps:
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
 
       - name: Download artifact
         uses: actions/download-artifact@v2
         with:
-          name: cibw-wheels-ubuntu-latest-0  # Adjust the name based on the actual artifact name
-          path: wheel  # Specify the directory where you want to download the artifact
+          pattern: cibw-*
+          path: dist
+          merge-multiple: true
 
-      - name: Install the wheel package
-        run: pip install ./wheel/*.whl
+      - name: Install wheels
+        run: |
+          for wheel in dist/*.whl; do
+            pip install $wheel
+          done
+
+ 
