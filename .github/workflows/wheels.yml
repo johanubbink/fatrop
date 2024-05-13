@@ -56,6 +56,10 @@ jobs:
           path: dist
           merge-multiple: true
 
+      - name: List wheel files
+        run: |
+          ls dist/*.whl
+
       - name: Install wheels
         run: |
           for wheel in dist/*.whl; do
