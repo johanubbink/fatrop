@@ -22,7 +22,7 @@ jobs:
         #   CIBW_SOME_OPTION: value
         #    ...
         with:
-           package-dir: fatropy
+           package-dir: ./fatropy
         #   output-dir: wheelhouse
         #   config-file: "{package}/pyproject.toml"
 
