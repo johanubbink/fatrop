@@ -27,12 +27,14 @@ jobs:
         uses: pypa/cibuildwheel@v2.18.0
         env:
            # for now only build specific versions
-           CIBW_BUILD: cp38-win_amd64 cp38-manylinux_x86_64 cp38-macosx_universal2
-           # CIBW_ARCHS_MACOS: auto universal2
+           # CIBW_BUILD: cp38-win_amd64 cp38-manylinux_x86_64 cp38-macosx_universal2
 
+           # only build linux x86_64
+           CIBW_ARCHS_LINUX: native
+           # Skip 32-bit builds
+           CIBW_SKIP: "*-musllinux*"
+           
 
-        #   CIBW_SOME_OPTION: value
-        #    ...
         with:
            package-dir: ./fatropy
         #   output-dir: wheelhouse
