@@ -15,7 +15,7 @@ jobs:
         # macos-13 is an intel runner, macos-14 is apple silicon
         # os: [ubuntu-latest, windows-latest, macos-13, macos-14]
         # windows and macos not working yet
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-13]
         
 
     steps:
@@ -29,9 +29,9 @@ jobs:
            # for now only build specific versions
            # CIBW_BUILD: cp38-manylinux_x86_64 
            # CIBW_SKIP: cp38-mu*
-           CIBW_BUILD: cp38-win_amd64 cp38-manylinux_x86_64 
-           # CIBW_ARCHS_LINUX: "native"
-           # CIBW_ARCHS_WINDOWS: "native"
+           CIBW_BUILD: cp38-win_amd64 cp38-manylinux_x86_64 cp38-macosx_universal2
+           CIBW_ARCHS_MACOS: auto universal2
+
 
         #   CIBW_SOME_OPTION: value
         #    ...
