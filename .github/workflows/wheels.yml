@@ -52,18 +52,13 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v2
         with:
-          pattern: cibw-*
-          path: dist
-          merge-multiple: true
+          name: cibw-wheels-ubuntu-latest-0
+          path: ./wheelhouse
+          if-no-files-found: error
 
       - name: List wheel files
         run: |
-          ls dist/*.whl
+          ls wheelhouse/*.whl
 
-      - name: Install wheels
-        run: |
-          for wheel in dist/*.whl; do
-            pip install $wheel
-          done
 
  
