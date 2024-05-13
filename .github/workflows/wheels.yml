@@ -20,7 +20,8 @@ jobs:
           
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.18.0
-        # env:
+        env:
+           CIBW_BUILD: cp39-manylinux_x86_64
         #   CIBW_SOME_OPTION: value
         #    ...
         with:
