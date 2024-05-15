@@ -28,16 +28,16 @@ jobs:
       #   uses: egor-tensin/setup-mingw@v2
       #   with:
       #     platform: x64
-    - name: Set up MinGW
-      if: matrix.os == 'windows-latest'
-      uses: msys2/setup-msys2@v2
-      with:
-        msystem: MINGW64
-        update: true
-        install: >-
-          mingw-w64-x86_64-toolchain
-          mingw-w64-x86_64-cmake
-          
+      - name: Set up MinGW
+        if: matrix.os == 'windows-latest'
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: >-
+            mingw-w64-x86_64-toolchain
+            mingw-w64-x86_64-cmake
+            
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.18.0
         env:
