@@ -15,7 +15,7 @@ jobs:
         # macos-13 is an intel runner, macos-14 is apple silicon
         # os: [ubuntu-latest, windows-latest, macos-13, macos-14]
         # windows and macos not working yet
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest, macos-14]
         
 
     steps:
@@ -34,11 +34,14 @@ jobs:
         uses: pypa/cibuildwheel@v2.18.0
         env:
            # for now only build specific versions
-           CIBW_BUILD: cp38-win_amd64 cp38-manylinux_x86_64 cp38-macosx_universal2
+          #  CIBW_BUILD: cp38-win_amd64 cp38-manylinux_x86_64 cp38-macosx_universal2
+           CIBW_BUILD: cp38-win_amd64 cp38-manylinux_x86_64 cp38-macosx_arm64
 
-           CIBW_ENVIRONMENT_WINDOWS: >
-                CIBW_ENVIRONMENT_WINDOWS: >
-                  CMAKE_ARGS="-G 'MinGW Makefiles' -DBLASFEO_TARGET=X64_INTEL_HASWELL -DBLASFEO_CROSSCOMPILING=ON;$CMAKE_ARGS"
+           CIBW_ENVIRONMENT_MACOS : CMAKE_ARGS="-DBLASFEO_TARGET=ARMV8A_APPLE_M1 -DBLASFEO_CROSSCOMPILING=ON"
+
+          #  CIBW_ENVIRONMENT_WINDOWS: >
+          #       CIBW_ENVIRONMENT_WINDOWS: >
+          #         CMAKE_ARGS="-G 'MinGW Makefiles' -DBLASFEO_TARGET=X64_INTEL_HASWELL -DBLASFEO_CROSSCOMPILING=ON;$CMAKE_ARGS"
                 
 
            # only build linux x86_64
