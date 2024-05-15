@@ -23,11 +23,11 @@ jobs:
         with:
           submodules: true
 
-      - name: Set up MinGW
-        if: matrix.os == 'windows-latest'
-        uses: egor-tensin/setup-mingw@v2
-        with:
-          platform: x64
+      # - name: Set up MinGW
+      #   if: matrix.os == 'windows-latest'
+      #   uses: egor-tensin/setup-mingw@v2
+      #   with:
+      #     platform: x64
 
           
       - name: Build wheels
@@ -37,7 +37,8 @@ jobs:
            CIBW_BUILD: cp38-win_amd64 cp38-manylinux_x86_64 cp38-macosx_universal2
 
            CIBW_ENVIRONMENT_WINDOWS: >
-                CMAKE_ARGS="-G "MinGW Makefiles" -DBLASFEO_TARGET=X64_INTEL_HASWELL -DBLASFEO_CROSSCOMPILING=ON;$CMAKE_ARGS"
+                CIBW_ENVIRONMENT_WINDOWS: >
+                  CMAKE_ARGS="-G \"MinGW Makefiles\" -DBLASFEO_TARGET=X64_INTEL_HASWELL -DBLASFEO_CROSSCOMPILING=ON;$CMAKE_ARGS"
                 
 
            # only build linux x86_64
