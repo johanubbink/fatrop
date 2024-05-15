@@ -51,8 +51,8 @@ jobs:
            CIBW_ENVIRONMENT_MACOS : CMAKE_ARGS="-G 'MinGW Makefiles' -DBLASFEO_TARGET=ARMV8A_APPLE_M1 -DBLASFEO_CROSSCOMPILING=ON"
 
            CIBW_ENVIRONMENT_WINDOWS: CMAKE_ARGS="-G 'MinGW Makefiles' -DBLASFEO_TARGET=X64_INTEL_HASWELL -DBLASFEO_CROSSCOMPILING=ON"
-            CIBW_ENVIRONMENT_WINDOWS: >
-              PATH="C:\msys64\usr\bin;$env:PATH"
+           CIBW_ENVIRONMENT_WINDOWS: >
+             PATH="C:\msys64\usr\bin;$env:PATH"
                 
 
            # only build linux x86_64
