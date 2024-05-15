@@ -38,7 +38,7 @@ jobs:
 
            CIBW_ENVIRONMENT_WINDOWS: >
                 CIBW_ENVIRONMENT_WINDOWS: >
-                  CMAKE_ARGS="-G \"MinGW Makefiles\" -DBLASFEO_TARGET=X64_INTEL_HASWELL -DBLASFEO_CROSSCOMPILING=ON;$CMAKE_ARGS"
+                  CMAKE_ARGS="-G 'MinGW Makefiles' -DBLASFEO_TARGET=X64_INTEL_HASWELL -DBLASFEO_CROSSCOMPILING=ON;$CMAKE_ARGS"
                 
 
            # only build linux x86_64
