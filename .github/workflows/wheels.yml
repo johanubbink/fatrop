@@ -22,6 +22,13 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: true
+
+      # Conditionally set up MinGW or Clang on Windows
+      - name: Set up MinGW
+        if: matrix.os == 'windows-latest'
+        run: |
+          choco install mingw -y
+          echo "::add-path::C:\\tools\\mingw64\\bin"
           
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.18.0
@@ -30,7 +37,8 @@ jobs:
            CIBW_BUILD: cp38-win_amd64 cp38-manylinux_x86_64 cp38-macosx_universal2
 
            CIBW_ENVIRONMENT_WINDOWS: >
-              CMAKE_ARGS="-DBLASFEO_TARGET=X64_INTEL_HASWELL -DBLASFEO_CROSSCOMPILING=ON -DENABLE_MULTITHREADING=OFF;$CMAKE_ARGS"
+              # CMAKE_ARGS="-DBLASFEO_TARGET=X64_INTEL_HASWELL -DBLASFEO_CROSSCOMPILING=ON -DENABLE_MULTITHREADING=OFF;$CMAKE_ARGS"
+              CMAKE_ARGS="-G 'MinGW Makefiles' -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DBLASFEO_TARGET=GENERIC -DBLASFEO_CROSSCOMPILING=ON -DENABLE_MULTITHREADING=OFF;$CMAKE_ARGS";
 
            # only build linux x86_64
            CIBW_ARCHS_LINUX: native
