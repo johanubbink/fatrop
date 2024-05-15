@@ -23,16 +23,12 @@ jobs:
         with:
           submodules: true
 
+
       - name: Set up MinGW
         if: matrix.os == 'windows-latest'
-        uses: msys2/setup-msys2
+        uses: egor-tensin/setup-mingw@v2
         with:
-          update: true
-          install: >-
-            mingw-w64-x86_64-ninja
-            mingw-w64-x86_64-gcc-fortran
-            mingw-w64-x86_64-hdf5       
-
+          platform: x64
 
               
       - name: Build wheels
