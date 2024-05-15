@@ -28,16 +28,18 @@ jobs:
       #   uses: egor-tensin/setup-mingw@v2
       #   with:
       #     platform: x64
-      - name: Set up MinGW
-        if: matrix.os == 'windows-latest'
-        uses: msys2/setup-msys2@v2
-        with:
-          msystem: MINGW64
-          update: true
-          install: >-
-            mingw-w64-x86_64-toolchain
-            mingw-w64-x86_64-cmake
-            
+      # - name: Set up MinGW
+      #   if: matrix.os == 'windows-latest'
+      #   uses: msys2/setup-msys2@v2
+      #   with:
+      #     msystem: MINGW64
+      #     update: true
+      #     install: >-
+      #       mingw-w64-x86_64-toolchain
+      #       mingw-w64-x86_64-cmake
+
+
+              
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.18.0
         env:
@@ -49,8 +51,8 @@ jobs:
            CIBW_ENVIRONMENT_MACOS : CMAKE_ARGS="-G 'MinGW Makefiles' -DBLASFEO_TARGET=ARMV8A_APPLE_M1 -DBLASFEO_CROSSCOMPILING=ON"
 
            CIBW_ENVIRONMENT_WINDOWS: CMAKE_ARGS="-G 'MinGW Makefiles' -DBLASFEO_TARGET=X64_INTEL_HASWELL -DBLASFEO_CROSSCOMPILING=ON"
-          #       CIBW_ENVIRONMENT_WINDOWS: >
-          #         CMAKE_ARGS="-G 'MinGW Makefiles' -DBLASFEO_TARGET=X64_INTEL_HASWELL -DBLASFEO_CROSSCOMPILING=ON;$CMAKE_ARGS"
+            CIBW_ENVIRONMENT_WINDOWS: >
+              PATH="C:\msys64\usr\bin;$env:PATH"
                 
 
            # only build linux x86_64
